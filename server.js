@@ -158,7 +158,7 @@ app.post('/bulk_text_lowercase', function (req, res) {
 });
 
 //Bulk copy attribute to a new attribute depending in conditions
-app.post('/bulk_text_lowercase', function (req, res) {
+app.post('/bulk_copy_attribute', function (req, res) {
 
 	console.log("HTTP POST Request");
     
@@ -176,9 +176,8 @@ app.post('/bulk_text_lowercase', function (req, res) {
                 var updates = {}
                 snapshot.forEach(function(child) {
                     var agent = child.val();
-                    console.log(agent);
-                    if (agent[text_by])
-                        updates["/" + child.key + "/" + new_attribute] = agent[text_by].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                    if (agent[filter_by])
+                        updates["/" + child.key + "/" + new_attribute_name] = agent[filter_by];
                 });
                 firebase.database().ref(refPath).update(updates);
                 res.json(snapshot.val());
