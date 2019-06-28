@@ -186,6 +186,36 @@ app.post('/bulk_copy_attribute', function (req, res) {
 
 });
 
+//Bulk copy attribute to a new collection
+app.post('/bulk_copy_section_collection', function (req, res) {
+
+	console.log("HTTP POST Request");
+    
+    var collection_origin = req.body.collection_origin;
+    var collection_destination = req.body.collection_destination;
+    var filter_by = req.body.filter_by; //attribute to move
+
+    var refPathOrigin = '/'+collection_origin+'/'
+    var refPathDestination = '/'+collection_destination+'/'
+    var userReference = firebase.database().ref(refPathOrigin);
+
+	//Attach an asynchronous callback to read the data
+	userReference.on("value", 
+			  function(snapshot) {
+                var updates = {}
+                snapshot.forEach(function(child) {
+                    var agent = child.val();
+                    if (agent[filter_by]){
+                        updates["/"+child.key+"/" + filter_by] = agent[filter_by];
+                    }
+                });
+                firebase.database().ref(refPathDestination).update(updates);
+                res.json(snapshot.val());
+                userReference.off("value");
+	});
+
+});
+
 //Delete an instance
 app.delete('/', function (req, res) {
 
