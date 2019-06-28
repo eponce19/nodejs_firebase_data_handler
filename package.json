@@ -1,0 +1,22 @@
+{
+  "name": "firebase-migrator",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "firebase": "^6.2.3",
+    "firebase-admin": "^8.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
