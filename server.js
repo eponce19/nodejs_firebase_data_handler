@@ -14,6 +14,8 @@ var config = {
   storageBucket: storageBucket_env,
   messagingSenderId: messagingSenderId_env
 };
+console.log("------");
+console.log(config);
 firebase.initializeApp(config);
 
 //Fetch instances
@@ -357,7 +359,6 @@ app.post('/bulk_copy_radiography', function (req, res) {
 
     var collection_origin = req.body.collection_origin;
     var collection_destination = req.body.collection_destination;
-    // var filter_by = req.body.filter_by; //attribute to move
 
     var refPathOrigin = '/'+collection_origin+'/'
     var refPathDestination = '/'+collection_destination+'/'
@@ -370,78 +371,77 @@ app.post('/bulk_copy_radiography', function (req, res) {
                 snapshot.forEach(function(child) {
                     var agent = child.val();
 
-                      if (agent[handRadiography] === "defined"){
+                      if (agent["handRadiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Mano";
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[handRadiographyLast];
-                        updates["/"+child.key+"/findings"] = agent[handRadiographyFindings];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["handRadiographyLast"];
+                        updates["/"+child.key+"/findings"] = agent["handRadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
 
                       }
-                      if (agent[footRadiography]) {
+                      if (agent["footRadiography"]) {
                         updates["/"+child.key+"/typeSelected"] = "Pie";
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[footRadiographyLast];
-                        updates["/"+child.key+"/findings"] = agent[footRadiographyFindings];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["footRadiographyLast"];
+                        updates["/"+child.key+"/findings"] = agent["footRadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
 
                       }
-                      if (agent[other1Radiography]){
+                      if (agent["other1Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other1RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other1RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other1RadiographyFindings];
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other1RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other1RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other1RadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
                       }
 
-                      if (agent[other2Radiography]){
+                      if (agent["other2Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other2RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other2RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other2RadiographyFindings];
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other2RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other2RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other2RadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
                       }
-                      if (agent[other3Radiography]){
+                      if (agent["other3Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other3RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other3RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other3RadiographyFindings];
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other3RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other3RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other3RadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
                       }
-                      if (agent[other4Radiography]){
+                      if (agent["other4Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other4RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other4RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other4RadiographyFindings];
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other4RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other4RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other4RadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
                       }
-                      if (agent[other5Radiography]){
+                      if (agent["other5Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other5RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other5RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other5RadiographyFindings];
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other5RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other5RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other5RadiographyFindings"];
                         console.log(updates);
                         firebase.database().ref(refPathDestination).update(updates);
                       }
-                      if (agent[other6Radiography]){
+                      if (agent["other6Radiography"]){
                         updates["/"+child.key+"/typeSelected"] = "Otro";
-                        updates["/"+child.key+"/typeSelectedDefine"] = agent[other6RadiographyType];
-                        updates["/"+child.key+"/patientKey"] = agent[patientKey];
-                        updates["/"+child.key+"/creationDate"] = agent[other6RadiographyDate];
-                        updates["/"+child.key+"/findings"] = agent[other6RadiographyFindings];
-                        console.log(updates);
-                        firebase.database().ref(refPathDestination).update(updates);
+                        updates["/"+child.key+"/typeSelectedDefine"] = agent["other6RadiographyType"];
+                        updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+                        updates["/"+child.key+"/creationDate"] = agent["other6RadiographyDate"];
+                        updates["/"+child.key+"/findings"] = agent["other6RadiographyFindings"];
+                        console.log(agent["fullName"] + " radiography created" );                       firebase.database().ref(refPathDestination).update(updates);
                       }
 
                 });
@@ -452,6 +452,48 @@ app.post('/bulk_copy_radiography', function (req, res) {
 	});
 
 });
+
+//Bulk copy attribute to a new collection
+app.post('/bulk_copy_densinometry', function (req, res) {
+  
+  var collection_origin = req.body.collection_origin;
+  var collection_destination = req.body.collection_destination;
+
+  var refPath = '/'+collection_origin+'/'
+  var refPathDestination = '/'+collection_destination+'/'
+  var userReference = firebase.database().ref(refPath);
+
+  //Attach an asynchronous callback to read the data
+  userReference.on("value",
+        function(snapshot) {
+                var updates = {}
+                snapshot.forEach(function(child) {
+                    var agent = child.val();
+                    if (agent["boneDensinometry"]){
+
+                      var creationDate = new Date();
+                      if (agent["boneDensinometryDate"]){
+                        creationDate = new Date(agent["boneDensinometryDate"]);
+                      }
+                      var miliseconds = creationDate.getTime();
+
+                      updates["/"+child.key+"/captionDate"] = creationDate;
+                      updates["/"+child.key+"/creationDate"] = creationDate;
+                      updates["/"+child.key+"/creationDateMilliseconds"] = miliseconds;
+                      updates["/"+child.key+"/findings"] = "Sin registrar";
+                      updates["/"+child.key+"/lastModifiedDate"] = creationDate;
+                      updates["/"+child.key+"/lastModifiedMilliseconds"] = miliseconds;
+                      updates["/"+child.key+"/location"] = "Reumatología";
+                      updates["/"+child.key+"/patientKey"] = agent["patientKey"];
+
+                      console.log(agent["fullName"] + " " + creationDate);
+                    }
+                });
+                firebase.database().ref(refPathDestination).update(updates);
+                console.log(updates);
+  });
+});
+
 
 //Delete an instance
 app.delete('/', function (req, res) {
